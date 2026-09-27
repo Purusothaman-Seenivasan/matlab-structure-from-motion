@@ -1,0 +1,6 @@
+.claude/
+*.asv
+*.m~
+*.autosave
+Thumbs.db
+.DS_Store
