@@ -73,21 +73,4 @@ Datasets 1–5 have relatively little lens distortion and no dominant scene plan
 
 The script opens a MATLAB figure containing the reconstructed point cloud and camera poses. Because this is an unscaled monocular reconstruction, its coordinate system and overall scale are arbitrary.
 
-## Code map
 
-- `run_sfm.m` — orchestrates the full reconstruction.
-- `get_dataset_info.m` — image lists, calibration values, initialization pairs, and thresholds.
-- `extract_features.m`, `sift_points.m` — feature extraction and matching.
-- `estimate_R_parallel.m` — robust essential-matrix/homography estimation and relative-pose selection.
-- `compute_relative_rotations.m`, `calculate_absolute_rotations.m` — rotation chaining.
-- `construct_3d_points_refined.m` — initial pair reconstruction and point refinement.
-- `compute_camera.m`, `estimate_T_robust_2p_new.m`, `refine_P.m` — camera translation estimation and refinement.
-- `triangulate_3D_point_DLT.m`, `triangulating_all_pairs.m` — linear triangulation and outlier filtering.
-- `plotcams.m` — camera-pose visualization.
-
-## Notes and limitations
-
-- The implementation assumes known camera intrinsics derived from EXIF-equivalent focal length rather than performing self-calibration.
-- Lens distortion is not explicitly corrected, so the nearly planar datasets 6–9 are more challenging.
-- Feature tracks are formed from pairwise matches rather than a global track graph, and the final model is assembled from adjacent-pair triangulations.
-- Refinement optimizes individual points and camera translations; it is not a joint full bundle adjustment over all camera and point parameters.
